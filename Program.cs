@@ -57,14 +57,13 @@ int sum = 0;
 
 for (int z = 0; z < numbers.Length; z+=2)
     sum = sum + numbers[z];
-
     Console.WriteLine($"Сумма элементов на нечётных позициях = {sum}");
 
 void FillArrayRandomNumbers(int[] numbers)
 {
     for(int i = 0; i < numbers.Length; i++)
         {
-            numbers[i] = new Random().Next(-100,100);
+            numbers[i] = new Random().Next(0,10);
         }
 }
 void PrintArray(int[] numbers)
