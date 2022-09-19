@@ -86,48 +86,116 @@
 // Задача 38: Задайте массив вещественных чисел. 
 // Найдите разницу между максимальным и минимальным элементов массива.
 
-Console.Clear();
-Console.Write("Задайте размер массива: ");
-int size = Convert.ToInt32(Console.ReadLine());
-int[] numbers = new int[size]; // использовал int, можно и double
-FillArrayRandomNumbers(numbers);
-Console.WriteLine("Наш массив: ");
+// Console.Clear();
+// Console.Write("Задайте размер массива: ");
+// int size = Convert.ToInt32(Console.ReadLine());
+// int[] numbers = new int[size]; // использовал int, можно и double
+// FillArrayRandomNumbers(numbers);
+// Console.WriteLine("Наш массив: ");
+// PrintArray(numbers);
+// int min = Int32.MaxValue;
+// int max = Int32.MinValue;
+
+// for (int z = 0; z < numbers.Length; z++)
+// {
+//     if (numbers[z] > max)
+//         {
+//             max = numbers[z];
+//         }
+//     if (numbers[z] < min)
+//         {
+//             min = numbers[z];
+//         }
+// }
+
+// Console.WriteLine($"Максимальное значение = {max}, минимальное значение = {min}");
+// Console.WriteLine($"Разница между максимальным и минимальным значением = {max - min}");
+
+// void FillArrayRandomNumbers(int[] numbers)
+// {
+//     for(int i = 0; i < numbers.Length; i++)
+//         {
+//             numbers[i] = new Random().Next(-100,100);
+//         }
+// }
+// void PrintArray(int[] numbers)
+// {
+//     Console.Write("[");
+//     for(int i = 0; i < numbers.Length; i++)
+//         {
+//             if (i!=(numbers.Length-1))
+//               Console.Write($"{numbers[i]}, ");
+//             else 
+//               Console.Write($"{numbers[i]}");
+//         }
+//     Console.Write("]");
+//     Console.WriteLine();
+// }
+
+
+
+Console.Write("Введите числа через запятую: ");
+int[] numbers = StringToNum(Console.ReadLine());
 PrintArray(numbers);
-int min = Int32.MaxValue;
-int max = Int32.MinValue;
-
-for (int z = 0; z < numbers.Length; z++)
+int sum = 0;
+for (int i = 0; i < numbers.Length; i++)
 {
-    if (numbers[z] > max)
+    if (numbers[i] > 0)
+    {
+        sum++;
+    }
+}
+Console.WriteLine();
+Console.WriteLine($"количество значений больше 0 = {sum}");
+
+
+int[] StringToNum(string input)
+{
+    int count = 1;
+    for (int i = 0; i < input.Length; i++)
+    {
+        if (input[i] == ',')
         {
-            max = numbers[z];
+            count++;
         }
-    if (numbers[z] < min)
+    }
+
+    int[] numbers = new int [count];
+    int index = 0;
+
+    for (int i = 0; i < input.Length; i++)
+    {
+        string temp = "";
+
+        while (input [i] != ',')
         {
-            min = numbers[z];
+        if(i != input.Length - 1)
+        {
+            temp += input [i].ToString();
+            i++;
         }
+        else
+        {
+            temp += input [i].ToString();
+            break;
+        }
+        }
+        numbers[index] = Convert.ToInt32(temp);
+        index++;
+    }
+    return numbers;
 }
 
-Console.WriteLine($"Максимальное значение = {max}, минимальное значение = {min}");
-Console.WriteLine($"Разница между максимальным и минимальным значением = {max - min}");
 
-void FillArrayRandomNumbers(int[] numbers)
-{
-    for(int i = 0; i < numbers.Length; i++)
-        {
-            numbers[i] = new Random().Next(-100,100);
-        }
-}
-void PrintArray(int[] numbers)
+void PrintArray(int[] array)
 {
     Console.Write("[");
-    for(int i = 0; i < numbers.Length; i++)
-        {
-            if (i!=(numbers.Length-1))
+    for (int i = 0; i < array.Length; i++)
+    {
+        if (i!=(numbers.Length-1))
               Console.Write($"{numbers[i]}, ");
             else 
               Console.Write($"{numbers[i]}");
-        }
+    }
     Console.Write("]");
-    Console.WriteLine();
 }
